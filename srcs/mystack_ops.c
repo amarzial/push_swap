@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mystack_ops.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/13 20:56:42 by amarzial          #+#    #+#             */
+/*   Updated: 2017/01/13 21:48:14 by amarzial         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "mystack.h"
+#include "libft.h"
+
+t_stack	*stack_push(t_stack *stack, void *value, size_t size)
+{
+	t_list	*tmp;
+
+	if (!(tmp = ft_lstnew(value, size)))
+		return (0);
+	tmp->next = stack->begin;
+	stack->begin = tmp;
+	if (!stack->end)
+		stack->end = stack->begin;
+	return (stack);
+}
+
+void	*stack_pop(t_stack *stack)
+{
+	t_list	*tmp;
+	void	*content;
+
+	if (stack->begin)
+	{
+		if (stack->end == stack->begin)
+			stack->end = 0;
+		tmp = stack->begin;
+		stack->begin = stack->begin->next;
+		content = tmp->content;
+		free(tmp);
+	}
+	else
+		return (0);
+	return (content);
+}

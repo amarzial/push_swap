@@ -6,11 +6,11 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:57:09 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/13 19:37:11 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/13 21:47:16 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <push_swap.h>
+#include "mystack.h"
 #include "libft.h"
 
 void	stack_move(t_stack *dest, t_stack *src)
@@ -55,7 +55,7 @@ void	stack_rev_rotate(t_stack *stack)
 		stack->end->next = stack->begin;
 		stack->begin = stack->end;
 		cur->next = 0;
-		stack->end->cur;
+		stack->end = cur;
 	}
 }
 
