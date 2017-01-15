@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 20:56:42 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/13 21:48:14 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/15 19:53:13 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,21 @@ void	*stack_pop(t_stack *stack)
 	else
 		return (0);
 	return (content);
+}
+
+size_t	stack_size(t_stack *stack)
+{
+	size_t	size;
+	t_list	*cursor;
+
+	if (!stack->begin)
+		return (0);
+	cursor = stack->begin;
+	size = 1;
+	while (cursor != stack->end)
+	{
+		cursor = cursor->next;
+		size++;
+	}
+	return (size);
 }
