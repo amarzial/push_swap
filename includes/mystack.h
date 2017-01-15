@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:09:46 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/15 19:54:59 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/15 21:13:29 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ typedef struct	s_stack
 	t_list	*end;
 }				t_stack;
 
+
+
 t_stack	*stack_push(t_stack *stack, void *value, size_t size);
-size_t	stack_size(t_stack stack);
+size_t	stack_size(t_stack *stack);
 void	*stack_pop(t_stack *stack);
 void	stack_move(t_stack *dest, t_stack *src);
 void	stack_rotate(t_stack *stack);

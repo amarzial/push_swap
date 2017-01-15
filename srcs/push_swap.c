@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/15 16:41:15 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/15 21:16:59 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,27 @@ static void	empty_stack(t_stack *stack)
 		free(stack_pop(stack));
 }
 
+static void	perform(char *op, t_stack *a, t_stack *b)
+{
+	if (exec_cmd(op, a, b))
+	{
+		ft_printf("%s\n", op);
+	}
+}
+
 static void	sort_stack(t_stack *a, t_stack *b)
 {
-	while (a->begin == a->end)
-	{
-		stack_move(b, a);
-		ft_printf("pb");
-	}
+	while (stack_size(a) > 2)
+		perform("pb", a, b);
 	while (b->begin)
 	{
-		
+		while (*(int*)b->begin->content > *(int*)a->begin->content)
+		{
+			if (is_sort(a) && *(int*)b->begin->content > *(int*)a->end->content)
+				break ;
+			perform("ra", a, b);
+		}
+		perform ("pa", a, b);
 	}
 }
 
