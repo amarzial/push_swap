@@ -6,50 +6,13 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/15 21:16:59 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/16 16:28:31 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "mystack.h"
 #include "libft.h"
-
-static int	is_sort(t_stack *stack)
-{
-	t_list	*tmp;
-
-	if (stack->begin == stack->end)
-		return (1);
-	tmp = stack->begin;
-	while (tmp != stack->end)
-	{
-		if (*(int*)tmp->content >= *(int*)tmp->next->content)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-static void	print_stack(t_stack *stack)
-{
-	t_list	*tmp;
-
-	tmp = stack->begin;
-	while (tmp)
-	{
-		ft_printf("%d ", *(int*)tmp->content);
-		tmp = tmp->next;
-	}
-	ft_putchar('\n');
-}
-static void	status(t_stack *a, t_stack *b, size_t cnt)
-{
-	ft_printf("- %lu\nstack 1:\n", cnt);
-	print_stack(a);
-	ft_printf("stack 2:\n");
-	print_stack(b);
-	ft_printf("=======================\n");
-}
 
 static void	empty_stack(t_stack *stack)
 {
@@ -75,7 +38,8 @@ static void	sort_stack(t_stack *a, t_stack *b)
 	{
 		while (*(int*)b->begin->content > *(int*)a->begin->content)
 		{
-			if (is_sort(a) && *(int*)b->begin->content > *(int*)a->end->content)
+			if (stack_is_sorted(a) && \
+			*(int*)b->begin->content > *(int*)a->end->content)
 				break ;
 			perform("ra", a, b);
 		}
@@ -87,8 +51,6 @@ int		main(int argc, const char *argv[])
 {
 	int		i;
 	int		n;
-	size_t	count;
-	char	*line;
 	t_stack	stack;
 	t_stack	stack2;
 

@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 20:56:42 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/15 19:53:13 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/17 11:52:54 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,28 @@ size_t	stack_size(t_stack *stack)
 		size++;
 	}
 	return (size);
+}
+
+int		stack_is_sorted(t_stack *stack)
+{
+	t_list	*tmp;
+
+	if (stack->begin == stack->end)
+		return (1);
+	tmp = stack->begin;
+	while (tmp != stack->end)
+	{
+		if (*(int*)tmp->content >= *(int*)tmp->next->content)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void	stack_clear(t_stack *stack)
+{
+	if (!stack->begin)
+		return ;
+	while (stack->begin)
+		free(stack_pop(stack));
 }

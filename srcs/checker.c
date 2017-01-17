@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:13:27 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/14 12:06:15 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/17 12:06:28 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,83 +14,71 @@
 #include "mystack.h"
 #include "libft.h"
 
-static int	is_sort(t_stack *stack)
+static int	process_input(int fd, t_stack *a, t_stack *b)
 {
-	t_list	*tmp;
+	char	*line;
+	int		status;
 
-	if (stack->begin == stack->end)
-		return (1);
-	tmp = stack->begin;
-	while (tmp != stack->end)
+	while (ft_get_line(fd, &line) > 0)
 	{
-		if (*(int*)tmp->content >= *(int*)tmp->next->content)
+		status = exec_cmd(line, a, b);
+		free(line);
+		if (status == 0)
 			return (0);
-		tmp = tmp->next;
 	}
 	return (1);
 }
 
-static void	print_stack(t_stack *stack)
+static void	error_exit(t_stack *stack)
 {
-	t_list	*tmp;
+	stack_clear(stack);
+	stack_clear(stack + 1);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
+}
 
-	tmp = stack->begin;
-	while (tmp)
+static int	validarg(const char *arg, t_stack *stack)
+{
+	int		num;
+	t_list	*cursor;
+
+	num = ft_atoi(arg);
+	if ((num <= 0 && *arg == '-') || (num >= 0 && *arg == '+'))
+		arg++;
+	while (*arg)
+		if (!ft_isdigit(*arg++))
+			error_exit(stack);
+	cursor = stack->begin;
+	while (cursor)
 	{
-		ft_printf("%d ", *(int*)tmp->content);
-		tmp = tmp->next;
+		if (num == *(int*)cursor->content)
+			error_exit(stack);
+		cursor = cursor->next;
 	}
-	ft_putchar('\n');
-}
-static void	status(t_stack *a, t_stack *b, size_t cnt)
-{
-	ft_printf("- %lu\nstack 1:\n", cnt);
-	print_stack(a);
-	ft_printf("stack 2:\n");
-	print_stack(b);
-	ft_printf("=======================\n");
-}
-
-static void	empty_stack(t_stack *stack)
-{
-	if (!stack->begin)
-		return ;
-	while (stack->begin)
-		free(stack_pop(stack));
+	return (num);
 }
 
 int		main(int argc, const char *argv[])
 {
 	int		i;
 	int		n;
-	size_t	count;
-	char	*line;
-	t_stack	stack;
-	t_stack	stack2;
+	t_stack	stack[2];
 
-	ft_bzero(&stack, sizeof(t_stack));
-	ft_bzero(&stack2, sizeof(t_stack));
+	ft_bzero(stack, sizeof(t_stack) * 2);
 	i = argc - 1;
 	while (i)
 	{
-		n = ft_atoi(argv[i]);
-		stack_push(&stack, &n, sizeof(int));
+		n = validarg(argv[i], stack);
+		stack_push(stack, &n, sizeof(int));
 		i--;
 	}
-	status(&stack, &stack2, 0);
-	count = 1;
-	while (ft_get_line(0, &line) > 0)
-	{
-		if (!exec_cmd(line, &stack, &stack2))
-			return (1);
-		status(&stack, &stack2, count++);
-		free(line);
-	}
-	if (is_sort(&stack))
+	if (!process_input(0, stack, stack + 1))
+		error_exit(stack);
+	if (stack_is_sorted(stack) && !(stack + 1)->begin)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	empty_stack(&stack);
-	empty_stack(&stack2);
+	stack_clear(stack);
+	stack_clear(stack + 1);
 	return 0;
 }
