@@ -1,6 +1,7 @@
 SHARED_SRCS = handler.c \
 			  mystack.c \
 			  mystack_ops.c \
+			  utils.c
 
 CHECKER_SRCS = checker.c
 PUSH_SWAP_SRCS = push_swap.c

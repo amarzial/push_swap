@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/16 16:28:31 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/18 19:45:22 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,45 +26,55 @@ static void	perform(char *op, t_stack *a, t_stack *b)
 {
 	if (exec_cmd(op, a, b))
 	{
-		ft_printf("%s\n", op);
+		ft_putstr(op);
+		ft_putchar('\n');
 	}
 }
 
 static void	sort_stack(t_stack *a, t_stack *b)
 {
+	int		max;
+	int		min;
+	int		top;
+
 	while (stack_size(a) > 2)
 		perform("pb", a, b);
+	max = ft_max(*(int*)a->begin->content, *(int*)a->end->content);
+	min = ft_min(*(int*)a->begin->content, *(int*)a->end->content);
 	while (b->begin)
 	{
-		while (*(int*)b->begin->content > *(int*)a->begin->content)
-		{
-			if (stack_is_sorted(a) && \
-			*(int*)b->begin->content > *(int*)a->end->content)
-				break ;
-			perform("ra", a, b);
-		}
+		top = *(int*)b->begin->content;
+		if (top > min && top < max)
+			while (!(*(int*)a->begin->content > top && \
+			*(int*)a->end->content < top))
+				perform("ra", a, b);
+		else if (top > max && ((max = top) || 1))
+			while (*(int*)a->begin->content != min)
+				perform("ra", a, b);
+		else if (top < min && ((min = top) || 1))
+			while (*(int*)a->end->content != max)
+				perform("ra", a, b);
 		perform ("pa", a, b);
 	}
 }
 
-int		main(int argc, const char *argv[])
+int			main(int argc, const char *argv[])
 {
 	int		i;
 	int		n;
-	t_stack	stack;
-	t_stack	stack2;
+	t_stack	stack[2];
 
-	ft_bzero(&stack, sizeof(t_stack));
-	ft_bzero(&stack2, sizeof(t_stack));
+	ft_bzero(stack, sizeof(t_stack) * 2);
 	i = argc - 1;
 	while (i)
 	{
-		n = ft_atoi(argv[i]);
-		stack_push(&stack, &n, sizeof(int));
+		n = validarg(argv[i], stack);
+		stack_push(stack, &n, sizeof(int));
 		i--;
 	}
-	sort_stack(&stack, &stack2);
-	empty_stack(&stack);
-	empty_stack(&stack2);
+	if (stack_size(stack) > 1)
+		sort_stack(stack, stack + 1);
+	empty_stack(stack);
+	empty_stack(stack + 1);
 	return 0;
 }
