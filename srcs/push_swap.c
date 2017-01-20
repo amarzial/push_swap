@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/20 17:49:29 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 20:42:34 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	empty_stack(t_stack *stack)
 		free(stack_pop(stack));
 }
 
-static void	perform(char *op, t_stack *a, t_stack *b, t_opts *opt)
+static int	perform(char *op, t_stack *a, t_stack *b, t_opts *opt)
 {
 	if (exec_cmd(op, a, b))
 	{
@@ -31,34 +31,58 @@ static void	perform(char *op, t_stack *a, t_stack *b, t_opts *opt)
 		ft_putchar('\n');
 		if (opt->verbose)
 			print_status(a, b);
+		return (1);
 	}
+	return (0);
+}
+
+static int	place(t_stack *a, int top, int *lims)
+{
+	int		res;
+
+	if ((top > lims[0] && top < lims[1]) && (*(int*)a->begin->content > top && \
+		*(int*)a->end->content < top))
+			res = 1;
+	else if (top > lims[1] && (*(int*)a->begin->content == lims[0]))
+			res = 1;
+	else if (top < lims[0] && (*(int*)a->end->content == lims[1]))
+			res = 1;
+	else
+		res = 0;
+	if (res)
+	{
+		lims[0] = ft_min(top, lims[0]);
+		lims[1] = ft_max(top, lims[1]);
+	}
+	return (res);
 }
 
 static void	sort_stack(t_stack *a, t_stack *b, t_opts *opt)
 {
-	int		max;
-	int		min;
-	int		top;
+	int		limits[2];
 
 	while (stack_size(a) > 2 && !stack_is_sorted(a))
 		perform("pb", a, b, opt);
-	max = ft_max(*(int*)a->begin->content, *(int*)a->end->content);
-	min = ft_min(*(int*)a->begin->content, *(int*)a->end->content);
+	limits[1] = ft_max(*(int*)a->begin->content, *(int*)a->end->content);
+	limits[0] = ft_min(*(int*)a->begin->content, *(int*)a->end->content);
 	while (b->begin)
 	{
-		top = *(int*)b->begin->content;
-		if (top > min && top < max)
-			while (!(*(int*)a->begin->content > top && \
-			*(int*)a->end->content < top))
-				perform("ra", a, b, opt);
-		else if (top > max && ((max = top) || 1))
-			while (*(int*)a->begin->content != min)
-				perform("ra", a, b, opt);
-		else if (top < min && ((min = top) || 1))
-			while (*(int*)a->end->content != max)
-				perform("ra", a, b, opt);
-		perform("pa", a, b, opt);
+		if (place(a, *(int*)b->begin->content, limits))
+		{
+			perform("pa", a, b, opt);
+			continue ;
+		}
+		else if (b->begin->next && \
+				place(a, *(int*)b->begin->next->content, limits))
+		{
+			perform("sb", a, b, opt);
+			perform("pa", a, b, opt);
+			continue ;
+		}
+		perform("ra", a, b, opt);
 	}
+	while (*(int*)a->begin->content != limits[0])
+		perform("ra", a, b, opt);
 }
 
 int			main(int argc, const char *argv[])
