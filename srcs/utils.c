@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/18 19:43:53 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 21:14:50 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,21 @@ void	error_exit(t_stack *stack)
 	stack_clear(stack + 1);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
+}
+
+void	stack_limits(t_stack *stack, int *lims)
+{
+	int		max;
+	int		min;
+	t_list	*cur;
+
+	cur = stack->begin;
+	lims[0] = *(int*)cur->content;
+	lims[1] = *(int*)cur->content;
+	while (cur)
+	{
+		lims[0] = ft_min(lims[0], *(int*)cur->content);
+		lims[1] = ft_max(lims[1], *(int*)cur->content);
+		cur = cur->next;
+	}
 }

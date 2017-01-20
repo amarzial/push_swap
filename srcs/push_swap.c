@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/20 20:42:34 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 21:16:43 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ static void	sort_stack(t_stack *a, t_stack *b, t_opts *opt)
 {
 	int		limits[2];
 
-	while (stack_size(a) > 2 && !stack_is_sorted(a))
+	while (stack_size(a) > 2 && !stack_is_ordered(a))
 		perform("pb", a, b, opt);
-	limits[1] = ft_max(*(int*)a->begin->content, *(int*)a->end->content);
-	limits[0] = ft_min(*(int*)a->begin->content, *(int*)a->end->content);
+	stack_limits(a, limits);
 	while (b->begin)
 	{
 		if (place(a, *(int*)b->begin->content, limits))
