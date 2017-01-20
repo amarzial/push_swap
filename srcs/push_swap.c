@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/18 19:45:22 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 16:04:43 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	sort_stack(t_stack *a, t_stack *b)
 		else if (top < min && ((min = top) || 1))
 			while (*(int*)a->end->content != max)
 				perform("ra", a, b);
-		perform ("pa", a, b);
+		perform("pa", a, b);
 	}
 }
 
@@ -76,5 +76,5 @@ int			main(int argc, const char *argv[])
 		sort_stack(stack, stack + 1);
 	empty_stack(stack);
 	empty_stack(stack + 1);
-	return 0;
+	return (0);
 }

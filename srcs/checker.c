@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:13:27 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/18 19:42:32 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 16:04:14 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ int			main(int argc, const char *argv[])
 		ft_printf("KO\n");
 	stack_clear(stack);
 	stack_clear(stack + 1);
-	return 0;
+	return (0);
 }
