@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/20 21:14:50 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/21 17:31:32 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	error_exit(t_stack *stack)
 
 void	stack_limits(t_stack *stack, int *lims)
 {
-	int		max;
-	int		min;
 	t_list	*cur;
 
 	cur = stack->begin;
