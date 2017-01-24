@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:13:27 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/24 15:55:16 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/24 19:25:14 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,37 @@ static int	process_input(int fd, t_stack *a, t_stack *b, t_opts *opt)
 	return (1);
 }
 
+static void	putarg(const char *arg, t_stack *stack)
+{
+	char	**tbl;
+	int		cur;
+	int		n;
+
+	if (!(tbl = ft_strsplit(arg, ' ')))
+		error_exit(stack);
+	cur = 0;
+	while (tbl[cur])
+	{
+		n = validarg(tbl[cur], stack);
+		stack_push_back(stack, &n, sizeof(int));
+		cur++;
+	}
+}
+
 int			main(int argc, const char *argv[])
 {
 	int				i;
-	int				n;
 	static t_opts	opt;
 	t_stack	stack[2];
 
 	ft_bzero(stack, sizeof(t_stack) * 2);
-	i = argc - 1;
 	opt_parse(argc, argv, &opt);
-	while (i > opt.size)
-	{
-		n = validarg(argv[i], stack);
-		stack_push(stack, &n, sizeof(int));
-		i--;
-	}
+	i = opt.size + 1;
+	while (i < argc)
+		putarg(argv[i++], stack);
 	if (!process_input(0, stack, stack + 1, &opt))
 		error_exit(stack);
-	if (stack_is_sorted(stack) && !(stack + 1)->begin)
+	if (stack_is_sorted(stack, 0) && !(stack + 1)->begin, 1)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

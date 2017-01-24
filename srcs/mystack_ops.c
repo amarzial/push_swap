@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 20:56:42 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/17 11:52:54 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/24 18:10:39 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,27 @@ size_t	stack_size(t_stack *stack)
 	return (size);
 }
 
-int		stack_is_sorted(t_stack *stack)
+int		stack_is_sorted(t_stack *stack, int ascending)
 {
 	t_list	*tmp;
+	int		vals[2];
 
 	if (stack->begin == stack->end)
 		return (1);
 	tmp = stack->begin;
 	while (tmp != stack->end)
 	{
-		if (*(int*)tmp->content >= *(int*)tmp->next->content)
+		if (!ascending)
+		{
+			vals[0] = *(int*)tmp->content;
+			vals[1] = *(int*)tmp->next->content;
+		}
+		else
+		{
+			vals[1] = *(int*)tmp->content;
+			vals[0] = *(int*)tmp->next->content;
+		}
+		if (vals[0] >= vals[1])
 			return (0);
 		tmp = tmp->next;
 	}
