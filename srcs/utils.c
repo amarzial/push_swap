@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/21 17:31:32 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/24 14:41:20 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ void	stack_limits(t_stack *stack, int *lims)
 		lims[1] = ft_max(lims[1], *(int*)cur->content);
 		cur = cur->next;
 	}
+}
+
+int		perform(char *op, t_stack *a, t_stack *b, t_opts *opt)
+{
+	if (exec_cmd(op, a, b))
+	{
+		ft_putstr(op);
+		ft_putchar('\n');
+		if (opt->verbose)
+			print_status(a, b);
+		return (1);
+	}
+	return (0);
 }
