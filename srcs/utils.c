@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/24 19:16:13 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:28:36 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ t_stack	*stack_push_back(t_stack *stack, void *value, size_t size)
 {
 	t_list	*tmp;
 
-	if (!(tmp = ft_lstnew(value, size)))
-		error_exit(stack);
 	if (!stack->begin)
 		return (stack_push(stack, value, size));
+	if (!(tmp = ft_lstnew(value, size)))
+		error_exit(stack);
 	stack->end->next = tmp;
 	stack->end = stack->end->next;
 	return (stack);

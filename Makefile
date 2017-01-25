@@ -3,7 +3,8 @@ SHARED_SRCS = handler.c \
 			  mystack_ops.c \
 			  utils.c \
 			  bonus.c \
-			  algorithm.c
+			  algorithm.c \
+			  common.c
 
 CHECKER_SRCS = checker.c
 PUSH_SWAP_SRCS = push_swap.c \

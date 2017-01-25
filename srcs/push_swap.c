@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/24 19:22:46 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:29:04 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,6 @@ static void	empty_stack(t_stack *stack)
 		return ;
 	while (stack->begin)
 		free(stack_pop(stack));
-}
-
-static void	putarg(const char *arg, t_stack *stack)
-{
-	char	**tbl;
-	int		cur;
-	int		n;
-
-	if (!(tbl = ft_strsplit(arg, ' ')))
-		error_exit(stack);
-	cur = 0;
-	while (tbl[cur])
-	{
-		n = validarg(tbl[cur], stack);
-		stack_push_back(stack, &n, sizeof(int));
-		cur++;
-	}
 }
 
 int			main(int argc, const char *argv[])
