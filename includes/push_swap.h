@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:53:43 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 18:57:43 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:31:30 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct	s_algo
 	int		rot;
 }				t_algo;
 
-int		exec_cmd(char *cmd, t_stack *a, t_stack *b);
-int		validarg(const char *arg, t_stack *stack);
-void	putarg(const char *arg, t_stack *stack);
-void	error_exit(t_stack *stack);
-int		perform(char *op, t_stack *a, t_stack *b, t_opts *opt);
-void	sort_stack(t_stack *a, t_stack *b, t_opts *opt);
-void	upper(t_stack *a, t_stack *b, size_t size, t_opts *opt);
-void	lower(t_stack *a, t_stack *b, size_t size, t_opts *opt);
+int				exec_cmd(char *cmd, t_stack *a, t_stack *b);
+int				validarg(const char *arg, t_stack *stack);
+void			putarg(const char *arg, t_stack *stack);
+void			error_exit(t_stack *stack);
+int				perform(char *op, t_stack *a, t_stack *b, t_opts *opt);
+void			sort_stack(t_stack *a, t_stack *b, t_opts *opt);
+void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt);
+void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt);
 
 #endif

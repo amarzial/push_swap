@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 18:50:19 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 19:32:38 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 {
 	t_algo	vars;
+
 	if (size <= 1 || stack_is_sorted(a))
 		return ;
 	ft_bzero(&vars, sizeof(t_algo));
