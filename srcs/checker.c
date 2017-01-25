@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:13:27 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/24 19:25:14 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:30:53 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			main(int argc, const char *argv[])
 		putarg(argv[i++], stack);
 	if (!process_input(0, stack, stack + 1, &opt))
 		error_exit(stack);
-	if (stack_is_sorted(stack, 0) && !(stack + 1)->begin, 1)
+	if (stack_is_sorted(stack) && !(stack + 1)->begin)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

@@ -6,20 +6,21 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 16:36:09 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:50:19 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdint.h>
 #include "push_swap.h"
 #include "bonus.h"
 #include "mystack.h"
 
 static int		stack_avg(t_stack *stack, size_t size)
 {
-	int		sum;
-	size_t	cnt;
-	t_list	*lst;
+	intmax_t	sum;
+	size_t		cnt;
+	t_list		*lst;
 
 	sum = 0;
 	lst = stack->begin;
@@ -30,7 +31,7 @@ static int		stack_avg(t_stack *stack, size_t size)
 		lst = lst->next;
 		cnt--;
 	}
-	return (sum / size);
+	return (sum / (intmax_t)size);
 }
 
 void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
@@ -63,7 +64,7 @@ void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 {
 	t_algo	vars;
-	if (size <= 1)
+	if (size <= 1 || stack_is_sorted(a))
 		return ;
 	ft_bzero(&vars, sizeof(t_algo));
 	vars.avg = stack_avg(a, size);

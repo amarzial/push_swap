@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:21:59 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/20 18:09:14 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/25 18:43:12 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	opt_parse(int argc, const char *argv[], t_opts *opt)
 			opt->verbose = 1;
 		else if (argv[cur][1] == 'c' && (opt->size++ || 1))
 			opt->color = 1;
-		else
+		else if (!ft_isdigit(argv[cur][1]))
 		{
 			ft_putstr_fd("Error: Unknown argument", 2);
 			exit(2);
