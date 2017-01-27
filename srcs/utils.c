@@ -6,20 +6,24 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:28:36 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/28 00:05:10 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mystack.h"
 #include "push_swap.h"
 #include "libft.h"
+#include <stdint.h>
+#include <limits.h>
 
 int		validarg(const char *arg, t_stack *stack)
 {
-	int		num;
-	t_list	*cursor;
+	intmax_t	num;
+	t_list		*cursor;
 
-	num = ft_atoi(arg);
+	num = ft_atoi2(arg);
+	if (num < INT_MIN || num > INT_MAX)
+		error_exit(stack);
 	if ((num <= 0 && *arg == '-') || (num >= 0 && *arg == '+'))
 		arg++;
 	while (*arg)

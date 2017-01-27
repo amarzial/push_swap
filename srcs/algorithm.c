@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:32:38 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/28 00:26:34 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 	vars.avg = stack_avg(a, size);
 	while (vars.cnt++ < size)
 	{
+		if (size < 4 && (*(int*)a->begin->content <= vars.avg) && (*(int*)a->begin->content <= vars.avg))
+			perform("sa", a, b, opt);
+		if (stack_is_sorted(a) && !(vars.rot = 0))
+			break ;
 		if ((*(int*)a->begin->content <= vars.avg) && ((vars.splits[1]++) || 1))
 			perform("pb", a, b, opt);
 		else if ((vars.splits[0]++) || 1)

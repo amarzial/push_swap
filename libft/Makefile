@@ -1,8 +1,9 @@
 CC = gcc
 CFLAGS = -c -Wall -Wextra -Werror
 SOURCES = ./srcs/ft_abs.c \
-		  ./srcs/ft_atoi.c \
 		  ./srcs/ft_bzero.c \
+		  ./srcs/ft_atoi.c \
+		  ./srcs/ft_atoi2.c \
 		  ./srcs/ft_isalnum.c \
 		  ./srcs/ft_isalpha.c \
 		  ./srcs/ft_isascii.c \
@@ -69,6 +70,10 @@ SOURCES = ./srcs/ft_abs.c \
 		  ./srcs/ft_strcnt.c \
 		  ./srcs/ft_putwchar.c \
 		  ./srcs/ft_putwstr.c \
+		  ./srcs/ft_putwchar_fd.c \
+		  ./srcs/ft_putwstr_fd.c \
+		  ./srcs/ft_printf/srcs/ft_printf_core.c \
+		  ./srcs/ft_printf/srcs/ft_printf_fd.c \
 		  ./srcs/ft_printf/srcs/ft_printf.c \
 		  ./srcs/ft_printf/srcs/ft_printf_char.c \
 		  ./srcs/ft_printf/srcs/ft_printf_handlings.c \

@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:29:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/27 23:38:37 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int			main(int argc, const char *argv[])
 	static t_opts	opt;
 	t_stack			stack[2];
 
+	if (argc == 1)
+		return (0);
 	ft_bzero(stack, sizeof(t_stack) * 2);
 	opt_parse(argc, argv, &opt);
 	i = opt.size + 1;
