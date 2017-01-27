@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/07 15:40:51 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:21:46 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int					ft_printf_unsigned_hex(t_arg *arg, va_list *lst)
 	ft_printf_unsignedtostr_base(out + (arg->size - len), num, arg, getb(arg));
 	padding(out, len, arg, num);
 	len = ft_strlen(out);
-	ft_putstr(out);
+	ft_putstr_fd(out, arg->fd);
 	free(out);
 	return (len);
 }

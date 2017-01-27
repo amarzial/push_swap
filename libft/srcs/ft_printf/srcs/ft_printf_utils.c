@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:52:38 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 16:17:21 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:17:49 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <unistd.h>
 #include "ft_printf_internal.h"
 
-void	ft_printf_putnchar(char c, int times)
+void	ft_printf_putnchar(char c, int times, int fd)
 {
 	while (times--)
-		write(1, &c, 1);
+		write(fd, &c, 1);
 }
 
 int		idigits(intmax_t n, int base)

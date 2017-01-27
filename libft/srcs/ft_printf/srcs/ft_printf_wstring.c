@@ -6,17 +6,17 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 12:10:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/21 07:53:32 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:28:51 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf_internal.h"
 
-static void		putnwstr(const wchar_t *str, size_t size)
+static void		putnwstr(const wchar_t *str, size_t size, int fd)
 {
 	while (size--)
-		ft_putwchar(*str++);
+		ft_putwchar_fd(*str++, fd);
 }
 
 static int		getwlen(const wchar_t *cur, int *size)
@@ -58,17 +58,17 @@ static void		padding(const wchar_t *out, t_arg *arg, int len)
 	{
 		if (arg->flag_left)
 		{
-			putnwstr(out, wch);
-			ft_printf_putnchar(' ', arg->field_width - len);
+			putnwstr(out, wch, arg->fd);
+			ft_printf_putnchar(' ', arg->field_width - len, arg->fd);
 		}
 		else
 		{
-			ft_printf_putnchar(' ', arg->field_width - len);
-			putnwstr(out, wch);
+			ft_printf_putnchar(' ', arg->field_width - len, arg->fd);
+			putnwstr(out, wch, arg->fd);
 		}
 	}
 	else
-		putnwstr(out, wch);
+		putnwstr(out, wch, arg->fd);
 	arg->size = ft_max(len, arg->field_width);
 }
 

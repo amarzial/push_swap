@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:27:12 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/21 07:49:22 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:27:30 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static void		padding(wchar_t out, t_arg *arg, int len)
 	{
 		if (arg->flag_left)
 		{
-			ft_putwchar(out);
-			ft_printf_putnchar(fill, arg->field_width - len);
+			ft_putwchar_fd(out, arg->fd);
+			ft_printf_putnchar(fill, arg->field_width - len, arg->fd);
 		}
 		else
 		{
-			ft_printf_putnchar(fill, arg->field_width - len);
-			ft_putwchar(out);
+			ft_printf_putnchar(fill, arg->field_width - len, arg->fd);
+			ft_putwchar_fd(out, arg->fd);
 		}
 	}
 	else
-		ft_putwchar(out);
+		ft_putwchar_fd(out, arg->fd);
 	arg->size = ft_max(len, arg->field_width);
 }
 
