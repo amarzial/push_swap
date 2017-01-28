@@ -5,21 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 22:35:35 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/24 13:38:24 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/08 15:35:30 by amarzial          #+#    #+#             */
+/*   Updated: 2017/01/20 23:28:02 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "libft.h"
+#include "ft_printf_internal.h"
 
-int	ft_printf(const char *format, ...)
+static int	print_arg(char **str, va_list *lst, int fd)
 {
-	int		ret;
-	va_list	lst;
+	t_arg	arg;
+	int		len;
 
-	va_start(lst, format);
-	ret = ft_printf_core(1, format, &lst);
-	va_end(lst);
-	return (ret);
+	ft_bzero(&arg, sizeof(t_arg));
+	arg.fd = fd;
+	len = ft_printf_parse_arg(*str, &arg, lst);
+	ft_printf_handler(&arg, lst);
+	*str += len;
+	return (arg.size);
+}
+
+int			ft_printf_core(int fd, const char *format, va_list *lst)
+{
+	char		*cursor;
+	int			out;
+
+	cursor = (char*)format;
+	out = 0;
+	while (*cursor)
+	{
+		if (*cursor == '%')
+			out += print_arg(&cursor, lst, fd);
+		else
+		{
+			ft_putchar_fd(*cursor++, fd);
+			out++;
+		}
+	}
+	return (out);
 }
