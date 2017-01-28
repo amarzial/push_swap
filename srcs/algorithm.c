@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/28 00:33:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/28 14:59:11 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int		stack_avg(t_stack *stack, size_t size)
 		lst = lst->next;
 		cnt--;
 	}
+	if (sum % 2)
+		sum++;
 	return (sum / (intmax_t)size);
 }
 
@@ -46,7 +48,7 @@ void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 	vars.avg = stack_avg(b, size);
 	while (vars.cnt++ < size)
 	{
-		if ((*(int*)b->begin->content > vars.avg) && ((vars.splits[0]++) || 1))
+		if ((*(int*)b->begin->content >= vars.avg) && ((vars.splits[0]++) || 1))
 			perform("pa", a, b, opt);
 		else if ((vars.splits[1]++) || 1)
 		{
@@ -69,16 +71,19 @@ void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 		return ;
 	ft_bzero(&vars, sizeof(t_algo));
 	vars.avg = stack_avg(a, size);
-	while (vars.cnt++ < size)
-	{
-		if ((*(int*)a->begin->content <= vars.avg) && ((vars.splits[1]++) || 1))
-			perform("pb", a, b, opt);
-		else if ((vars.splits[0]++) || 1)
+	if (size == 2 && *(int*)a->begin->content > *(int*)a->begin->next->content)
+		perform("sa", a, b, opt);
+	else
+		while (vars.cnt++ < size)
 		{
-			perform("ra", a, b, opt);
-			vars.rot++;
+			if ((*(int*)a->begin->content < vars.avg) && ((vars.splits[1]++) || 1))
+				perform("pb", a, b, opt);
+			else if ((vars.splits[0]++) || 1)
+			{
+				perform("ra", a, b, opt);
+				vars.rot++;
+			}
 		}
-	}
 	vars.rot %= stack_size(a);
 	while (vars.rot--)
 		perform("rra", a, b, opt);
