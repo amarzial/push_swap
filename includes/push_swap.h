@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:53:43 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:31:30 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/31 19:01:40 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 # include "mystack.h"
 # include "bonus.h"
 # include "libft.h"
+# define LTOI(x) *(int*)x->content
 
 typedef struct	s_algo
 {
 	size_t	cnt;
-	int		avg;
-	size_t	splits[2];
-	int		rot;
+	t_stack	*a;
+	t_stack	*b;
+	size_t	a_size;
+	size_t	b_size;
+	int		rev;
 }				t_algo;
 
 int				exec_cmd(char *cmd, t_stack *a, t_stack *b);
