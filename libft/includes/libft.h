@@ -6,7 +6,11 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 11:59:55 by amarzial          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/01/28 19:49:11 by amarzial         ###   ########.fr       */
+=======
+/*   Updated: 2017/01/30 15:42:52 by amarzial         ###   ########.fr       */
+>>>>>>> 559b87e297cd0e835c6abe25c1fe71968b904cd3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +28,11 @@
 # include <stdlib.h>
 # define GET_LINE_BUFF_SIZE 32
 # include "libft.h"
+<<<<<<< HEAD
 # define FT_COLOR(x) "\x1B[" x "m"
+=======
+# define FT_COL(x) "\e[" x "m"
+>>>>>>> 559b87e297cd0e835c6abe25c1fe71968b904cd3
 
 typedef struct			s_reader
 {
