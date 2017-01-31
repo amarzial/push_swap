@@ -6,13 +6,52 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:58:05 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/21 08:55:39 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/22 14:35:12 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "libft.h"
 #include "ft_printf_internal.h"
+
+static char	g_table[127] =
+{
+	['#'] = 1,
+	['-'] = 1,
+	['+'] = 1,
+	[' '] = 1,
+	['*'] = 1,
+	['.'] = 1,
+	['h'] = 1,
+	['l'] = 1,
+	['j'] = 1,
+	['z'] = 1,
+	['0'] = 1,
+	['1'] = 1,
+	['2'] = 1,
+	['3'] = 1,
+	['4'] = 1,
+	['5'] = 1,
+	['6'] = 1,
+	['7'] = 1,
+	['8'] = 1,
+	['9'] = 1,
+	['%'] = 2,
+	['s'] = 2,
+	['S'] = 2,
+	['p'] = 2,
+	['d'] = 2,
+	['D'] = 2,
+	['i'] = 2,
+	['o'] = 2,
+	['O'] = 2,
+	['u'] = 2,
+	['U'] = 2,
+	['x'] = 2,
+	['X'] = 2,
+	['c'] = 2,
+	['C'] = 2
+};
 
 static int	parse_len(char *str, t_arg *arg)
 {
@@ -112,9 +151,9 @@ int			ft_printf_parse_arg(char *str, t_arg *arg, va_list *lst)
 
 	idx = 1;
 	isconv = 1;
-	while (str[idx] && !ft_strchr(FT_PRINTF_CONVERSION, str[idx]))
+	while (str[idx] && g_table[(unsigned char)str[idx]] != 2)
 	{
-		if (!ft_strchr(FT_PRINTF_CSET, str[idx]) && !(isconv = 0))
+		if (g_table[(unsigned char)str[idx]] == 0 && !(isconv = 0))
 			break ;
 		idx++;
 	}
