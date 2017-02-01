@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:09:46 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 18:29:36 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/01 17:30:32 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_stack			*stack_push(t_stack *stack, void *value, size_t size);
 t_stack			*stack_push_back(t_stack *stack, void *value, size_t size);
 size_t			stack_size(t_stack *stack);
 int				stack_is_sorted(t_stack *stack);
-int				stack_is_ordered(t_stack *stack);
+int				stack_is_nsorted(t_stack *stack, size_t size);
 void			stack_clear(t_stack *stack);
 void			*stack_pop(t_stack *stack);
 void			stack_move(t_stack *dest, t_stack *src);

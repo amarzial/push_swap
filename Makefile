@@ -4,7 +4,8 @@ SHARED_SRCS = handler.c \
 			  utils.c \
 			  bonus.c \
 			  algorithm.c \
-			  common.c
+			  common.c \
+			  op_utils.c
 
 CHECKER_SRCS = checker.c
 PUSH_SWAP_SRCS = push_swap.c \
