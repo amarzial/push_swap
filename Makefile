@@ -5,7 +5,9 @@ SHARED_SRCS = handler.c \
 			  bonus.c \
 			  algorithm.c \
 			  common.c \
-			  op_utils.c
+			  op_utils.c \
+			  mergesort.c \
+			  heuristic.c \
 
 CHECKER_SRCS = checker.c
 PUSH_SWAP_SRCS = push_swap.c \

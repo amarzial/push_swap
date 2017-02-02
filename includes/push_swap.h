@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:53:43 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/01 15:49:33 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/01 19:37:07 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef enum	e_select
 
 typedef struct	s_algo
 {
-	size_t		cnt;
 	t_stack		*a;
 	t_stack		*b;
 	size_t		a_size;
@@ -42,6 +41,9 @@ void			sort_stack(t_stack *a, t_stack *b, t_opts *opt);
 void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt);
 void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt);
 
+void			mysort(t_algo *vars, size_t size, t_opts *opt);
 char			*get_op(char *op, t_select selected);
+void			merge_btoa(t_algo *vars, t_opts *opt);
+void			merge_atob(t_algo *vars, t_opts *opt);
 
 #endif
