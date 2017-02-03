@@ -6,13 +6,14 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 12:38:39 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/03 13:57:35 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:23:04 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdint.h>
 #include "libft.h"
 #include "mystack.h"
+#include "push_swap.h"
 
 static int		stack_avg(t_stack *stack, size_t size)
 {
@@ -25,7 +26,7 @@ static int		stack_avg(t_stack *stack, size_t size)
 	cnt = size;
 	while (cnt)
 	{
-		sum += *(int*)lst->content;
+		sum += LTOI(lst);
 		lst = lst->next;
 		cnt--;
 	}
@@ -47,14 +48,14 @@ static int		stack_median(t_stack *stack, size_t size)
 		cur = stack->begin;
 		while (cur && curs[1]--)
 		{
-			if (*(int*)cur->content > *(int*)med->content)
+			if (LTOI(cur) > LTOI(med))
 				curs[3]++;
-			else if (*(int*)cur->content <= *(int*)med->content)
+			else if (LTOI(cur) <= LTOI(med))
 				curs[2]++;
 			cur = cur->next;
 		}
 		if ((curs[2] - curs[3] == 0) || (curs[2] - curs[3] == 1))
-			return (*(int*)med->content);
+			return (LTOI(med));
 		med = med->next;
 	}
 	return (0);

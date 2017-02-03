@@ -5,6 +5,7 @@ SHARED_SRCS = handler.c \
 			  utils.c \
 			  bonus.c \
 			  algorithm.c \
+			  fast_sort.c \
 			  common.c
 
 CHECKER_SRCS = checker.c

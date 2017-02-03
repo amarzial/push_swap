@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:53:43 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:31:30 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/03 20:18:07 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "mystack.h"
 # include "bonus.h"
 # include "libft.h"
+# define LTOI(x) *(int*)x->content
 
 typedef struct	s_algo
 {
@@ -32,5 +33,6 @@ int				perform(char *op, t_stack *a, t_stack *b, t_opts *opt);
 void			sort_stack(t_stack *a, t_stack *b, t_opts *opt);
 void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt);
 void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt);
+void			fast_sort(t_stack *a, t_stack *b, t_opts *opt);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/03 12:51:40 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/03 20:19:21 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdint.h>
 #include "push_swap.h"
 #include "bonus.h"
 #include "mystack.h"
@@ -19,7 +18,7 @@
 void			top_a(t_stack *stack, size_t size, t_opts *opt)
 {
 	if (size == 2)
-		if (*(int*)stack->begin->content > *(int*)stack->begin->next->content)
+		if (LTOI(stack->begin) > LTOI(stack->begin->next))
 			perform("sa", stack, stack + 1, opt);
 }
 
@@ -35,7 +34,7 @@ void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 	vars.avg = stack_pivot(b, size);
 	while (vars.cnt++ < size)
 	{
-		if ((*(int*)b->begin->content > vars.avg) && ((vars.splits[0]++) || 1))
+		if ((LTOI(b->begin) > vars.avg) && ((vars.splits[0]++) || 1))
 			perform("pa", a, b, opt);
 		else if ((vars.splits[1]++) || 1)
 		{
@@ -63,7 +62,7 @@ void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 	vars.avg = stack_pivot(a, size);
 	while (vars.cnt++ < size)
 	{
-		if ((*(int*)a->begin->content <= vars.avg) && ((vars.splits[1]++) || 1))
+		if ((LTOI(a->begin) <= vars.avg) && ((vars.splits[1]++) || 1))
 			perform("pb", a, b, opt);
 		else if ((vars.splits[0]++) || 1)
 		{
@@ -85,5 +84,8 @@ void			sort_stack(t_stack *a, t_stack *b, t_opts *opt)
 	size = stack_size(a);
 	if (size == 1)
 		return ;
-	lower(a, b, size, opt);
+	else if (size == 3)
+		fast_sort(a, b, opt);
+	else
+		lower(a, b, size, opt);
 }
