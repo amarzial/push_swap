@@ -1,6 +1,7 @@
 SHARED_SRCS = handler.c \
 			  mystack.c \
 			  mystack_ops.c \
+			  mystack_extra.c \
 			  utils.c \
 			  bonus.c \
 			  algorithm.c \

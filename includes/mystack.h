@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:09:46 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 18:29:36 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/03 12:52:07 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void			stack_rotate(t_stack *stack);
 void			stack_rev_rotate(t_stack *stack);
 void			stack_swap(t_stack *stack);
 void			stack_limits(t_stack *stack, int *lims);
+int				stack_pivot(t_stack *stack, size_t size);
 
 #endif

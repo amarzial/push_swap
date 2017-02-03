@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:32:38 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/03 12:51:40 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,11 @@
 #include "bonus.h"
 #include "mystack.h"
 
-static int		stack_avg(t_stack *stack, size_t size)
+void			top_a(t_stack *stack, size_t size, t_opts *opt)
 {
-	intmax_t	sum;
-	size_t		cnt;
-	t_list		*lst;
-
-	sum = 0;
-	lst = stack->begin;
-	cnt = size;
-	while (cnt)
-	{
-		sum += *(int*)lst->content;
-		lst = lst->next;
-		cnt--;
-	}
-	return (sum / (intmax_t)size);
+	if (size == 2)
+		if (*(int*)stack->begin->content > *(int*)stack->begin->next->content)
+			perform("sa", stack, stack + 1, opt);
 }
 
 void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
@@ -40,10 +29,10 @@ void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 
 	if (size <= 0)
 		return ;
-	if (size == 1 && perform("pa", a, b, opt))
+	else if (size == 1 && perform("pa", a, b, opt))
 		return ;
 	ft_bzero(&vars, sizeof(t_algo));
-	vars.avg = stack_avg(b, size);
+	vars.avg = stack_pivot(b, size);
 	while (vars.cnt++ < size)
 	{
 		if ((*(int*)b->begin->content > vars.avg) && ((vars.splits[0]++) || 1))
@@ -65,10 +54,13 @@ void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 {
 	t_algo	vars;
 
-	if (size <= 1 || stack_is_sorted(a))
+	if (size <= 2 || stack_is_sorted(a))
+	{
+		top_a(a, size, opt);
 		return ;
+	}
 	ft_bzero(&vars, sizeof(t_algo));
-	vars.avg = stack_avg(a, size);
+	vars.avg = stack_pivot(a, size);
 	while (vars.cnt++ < size)
 	{
 		if ((*(int*)a->begin->content <= vars.avg) && ((vars.splits[1]++) || 1))
