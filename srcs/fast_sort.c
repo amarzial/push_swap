@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 19:55:34 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 02:51:37 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 14:30:24 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ static void	size3(t_stack *a, t_stack *b, int rev, t_opts *opt)
 			perform("ra", a, b, opt);
 		else if (pos == 1)
 		{
-			perform("ra", a, b, opt);
-			perform("ra", a, b, opt);
+			perform("rra", a, b, opt);
 		}
 		if (LTOI(a->begin) > LTOI(a->begin->next))
 			perform("sa", a, b, opt);
