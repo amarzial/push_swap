@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:21:59 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 15:30:53 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 16:35:20 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "bonus.h"
 #include "libft.h"
 
-void	opt_parse(int argc, const char *argv[], t_opts *opt)
+void		opt_parse(int argc, const char *argv[], t_opts *opt)
 {
 	int		cur;
 
@@ -34,15 +34,36 @@ void	opt_parse(int argc, const char *argv[], t_opts *opt)
 	}
 }
 
-void	print_special(char *op, t_stack *a, t_stack *b, t_opts *opt)
+static int	get_color(char *op)
 {
-	ft_putstr(op);
+	if (ft_strncmp(op, "rr", 2) == 0)
+		return (93);
+	else if (ft_strncmp(op, "r", 1) == 0)
+		return (91);
+	else if (ft_strncmp(op, "p", 1) == 0)
+		return (92);
+	else if (ft_strncmp(op, "s", 1) == 0)
+		return (94);
+	return (0);
+}
+
+void		print_special(char *op, t_stack *a, t_stack *b, t_opts *opt)
+{
+	char *col;
+	if (opt->color)
+	{
+		col = ft_itoa(get_color(op));
+		ft_printf("\x1B[%sm%s%s", col, op, FT_COL("0"));
+		free(col);
+	}
+	else
+		ft_putstr(op);
 	ft_putchar('\n');
 	if (opt->verbose)
 		print_status(a, b);
 }
 
-void	print_status(t_stack *a, t_stack *b)
+void		print_status(t_stack *a, t_stack *b)
 {
 	t_list	*cur;
 
