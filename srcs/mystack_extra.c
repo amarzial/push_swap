@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 12:38:39 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/03 19:23:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 02:27:21 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,55 @@ static int		stack_avg(t_stack *stack, size_t size)
 	}
 	return (sum / (intmax_t)size);
 }
+
+size_t			min_index(t_stack *s, size_t size)
+{
+	size_t	idx;
+	size_t	i_min;
+	int		min;
+	t_list	*cur;
+
+	idx = 0;
+	cur = s->begin;
+	min = LTOI(cur);
+	i_min = 0;
+	while (cur && size--)
+	{
+		if (min > LTOI(cur))
+		{
+			min = LTOI(cur);
+			i_min = idx;
+		}
+		cur = cur->next;
+		idx++;
+	}
+	return (i_min);
+}
+
+size_t			max_index(t_stack *s, size_t size)
+{
+	size_t	idx;
+	size_t	i_max;
+	int		max;
+	t_list	*cur;
+
+	idx = 0;
+	cur = s->begin;
+	max = LTOI(cur);
+	i_max = 0;
+	while (cur && size--)
+	{
+		if (max < LTOI(cur))
+		{
+			max = LTOI(cur);
+			i_max = idx;
+		}
+		cur = cur->next;
+		idx++;
+	}
+	return (i_max);
+}
+
 
 static int		stack_median(t_stack *stack, size_t size)
 {
