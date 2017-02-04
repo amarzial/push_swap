@@ -6,17 +6,15 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 11:59:55 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 19:23:14 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:59:38 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# ifdef FT_OPEN_HEADERS
-#  include <sys/types.h>
-#  include <sys/stat.h>
-#  include <fcntl.h>
-# endif
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <string.h>
 # include <stdarg.h>
 # include <stdint.h>

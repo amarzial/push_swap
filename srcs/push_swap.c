@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 19:29:24 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 20:12:00 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			main(int argc, const char *argv[])
 	if (argc == 1)
 		return (0);
 	ft_bzero(stack, sizeof(t_stack) * 2);
-	opt_parse(argc, argv, &opt);
+	opt_push_swap(argc, argv, &opt);
 	i = opt.size + 1;
 	while (i < argc)
 		putarg(argv[i++], stack);

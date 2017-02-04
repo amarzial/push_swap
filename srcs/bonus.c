@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:21:59 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 19:42:19 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 20:19:16 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "bonus.h"
 #include "libft.h"
 
-void		opt_parse(int argc, const char *argv[], t_opts *opt)
+void		opt_push_swap(int argc, const char *argv[], t_opts *opt)
 {
 	int		cur;
 
@@ -25,6 +25,33 @@ void		opt_parse(int argc, const char *argv[], t_opts *opt)
 			opt->verbose = 1;
 		else if (argv[cur][1] == 'c' && (opt->size++ || 1))
 			opt->color = 1;
+		else if (!ft_isdigit(argv[cur][1]))
+		{
+			ft_putstr_fd("Error: Unknown argument", 2);
+			exit(2);
+		}
+		cur++;
+	}
+}
+
+void		opt_checker(int argc, const char *argv[], t_opts *opt)
+{
+	int		cur;
+
+	cur = 1;
+	while (cur < argc && argv[cur][0] == '-')
+	{
+		if (argv[cur][1] == 'v' && (opt->size++ || 1))
+			opt->verbose = 1;
+		else if (argv[cur][1] == 'f' && (opt->size++ || 1))
+		{
+			opt->size++;
+			if (cur + 1 >= argc || (opt->fd = open(argv[++cur], O_RDONLY)) < 0)
+			{
+				ft_printf_fd(2, "Error reading file \"%s\"", argv[cur]);
+				exit(3);
+			}
+		}
 		else if (!ft_isdigit(argv[cur][1]))
 		{
 			ft_putstr_fd("Error: Unknown argument", 2);
