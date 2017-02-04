@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 20:04:20 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 20:31:08 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static char	*next_cmd(t_stack *cmds)
 	char	*op;
 
 	op = (char*)stack_pop(cmds);
-	if ((!ft_strcmp(op, "ra") && \
+	if (cmds->begin && ((!ft_strcmp(op, "ra") && \
 	!ft_strcmp((char*)cmds->begin->content, "rra")) || \
 	(!ft_strcmp(op, "rb") && !ft_strcmp((char*)cmds->begin->content, "rrb")) ||
 	(!ft_strcmp(op, "rra") && \
 	!ft_strcmp((char*)cmds->begin->content, "ra")) || \
-	(!ft_strcmp(op, "rrb") && !ft_strcmp((char*)cmds->begin->content, "rb")))
+	(!ft_strcmp(op, "rrb") && !ft_strcmp((char*)cmds->begin->content, "rb"))))
 	{
 		free(op);
 		free(stack_pop(cmds));
