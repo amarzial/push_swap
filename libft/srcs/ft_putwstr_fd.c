@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 22:31:25 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/20 22:32:13 by amarzial         ###   ########.fr       */
+/*   Created: 2016/12/11 16:56:43 by amarzial          #+#    #+#             */
+/*   Updated: 2017/01/20 22:24:12 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putwstr(wchar_t *str)
+void	ft_putwstr_fd(wchar_t *str, int fd)
 {
-	ft_putwstr_fd(str, 1);
+	while (*str)
+		ft_putwchar_fd(*str++, fd);
 }

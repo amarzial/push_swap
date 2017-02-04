@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 21:49:35 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 20:58:20 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:21:27 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int					ft_printf_unsigned_decimal(t_arg *arg, va_list *lst)
 	"0123456789");
 	padding(out, len, arg);
 	len = ft_strlen(out);
-	ft_putstr(out);
+	ft_putstr_fd(out, arg->fd);
 	free(out);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 17:49:26 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/19 18:14:06 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/28 18:24:08 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FT_PRINTF_INTERNAL_H
 # include <stdarg.h>
 # include <stdint.h>
-# define FT_PRINTF_CSET "#0-+ *.%sSpdDioOuUxXcChljz0123456789"
-# define FT_PRINTF_CONVERSION "%sSpdDioOuUxXcC"
 
 typedef struct	s_arg
 {
@@ -39,10 +37,11 @@ typedef struct	s_arg
 	}		length_mod;
 	char	conversion;
 	int		size;
+	int		fd;
 }				t_arg;
 
+int				ft_printf_core(int fd, const char *format, va_list *lst);
 int				ft_printf_parse_arg(char *str, t_arg *arg, va_list *lst);
-
 int				ft_printf_handler(t_arg *arg, va_list *lst);
 
 /*
@@ -68,7 +67,7 @@ t_arg *arg, char *base);
 /*
 ** utilities
 */
-void			ft_printf_putnchar(char c, int times);
+void			ft_printf_putnchar(char c, int times, int fd);
 int				idigits(intmax_t n, int base);
 int				udigits(uintmax_t n, int base);
 int				get_int_arg(va_list *lst);

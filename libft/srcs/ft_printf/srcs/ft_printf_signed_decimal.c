@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 17:21:43 by amarzial          #+#    #+#             */
-/*   Updated: 2016/12/17 20:57:24 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/01/20 22:20:15 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				ft_printf_signed_decimal(t_arg *arg, va_list *lst)
 		arg->flag_zero = 0;
 	ft_printf_signedtostr(out + (arg->size - len), num, arg);
 	padding(out, len, arg);
-	ft_putstr(out);
+	ft_putstr_fd(out, arg->fd);
 	len = ft_strlen(out);
 	free(out);
 	return (len);
