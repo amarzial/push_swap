@@ -6,47 +6,60 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/28 00:33:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:20:52 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdint.h>
 #include "push_swap.h"
 #include "bonus.h"
 #include "mystack.h"
 
-static int		stack_avg(t_stack *stack, size_t size)
+static void		set_top(t_stack *stack, size_t size, t_select sel, t_opts *opt)
 {
-	intmax_t	sum;
-	size_t		cnt;
-	t_list		*lst;
-
-	sum = 0;
-	lst = stack->begin;
-	cnt = size;
-	while (cnt)
+	if (size == 2)
 	{
-		sum += *(int*)lst->content;
-		lst = lst->next;
-		cnt--;
+		if (sel == A && LTOI(stack->begin) > LTOI(stack->begin->next))
+			perform("sa", stack, stack + 1, opt);
+		else if (sel != A && LTOI(stack->begin) < LTOI(stack->begin->next))
+			perform("sb", stack - 1, stack, opt);
 	}
-	return (sum / (intmax_t)size);
+}
+
+void			handler(t_stack *a, t_select sel, size_t size, t_opts *opt)
+{
+	if (sel == A)
+	{
+		if (size == 2)
+			set_top(a, 2, A, opt);
+		else if (size == 3)
+			fast_sort(a, a + 1, A, opt);
+	}
+	else if (sel != A)
+	{
+		if (size == 2)
+			set_top(a + 1, 2, B, opt);
+		else if (size == 3)
+			fast_sort(a, a + 1, B, opt);
+		while (size--)
+			perform("pa", a, a + 1, opt);
+	}
 }
 
 void			upper(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 {
 	t_algo vars;
 
-	if (size <= 0)
+	if (size <= 3)
+	{
+		handler(a, B, size, opt);
 		return ;
-	if (size == 1 && perform("pa", a, b, opt))
-		return ;
+	}
 	ft_bzero(&vars, sizeof(t_algo));
-	vars.avg = stack_avg(b, size);
+	vars.avg = stack_pivot(b, size);
 	while (vars.cnt++ < size)
 	{
-		if ((*(int*)b->begin->content > vars.avg) && ((vars.splits[0]++) || 1))
+		if ((LTOI(b->begin) > vars.avg) && ((vars.splits[0]++) || 1))
 			perform("pa", a, b, opt);
 		else if ((vars.splits[1]++) || 1)
 		{
@@ -65,13 +78,17 @@ void			lower(t_stack *a, t_stack *b, size_t size, t_opts *opt)
 {
 	t_algo	vars;
 
-	if (size <= 1 || stack_is_sorted(a))
+	if (size <= 3 || stack_is_nsorted(a, size))
+	{
+		if (size <= 3)
+			handler(a, A, size, opt);
 		return ;
+	}
 	ft_bzero(&vars, sizeof(t_algo));
-	vars.avg = stack_avg(a, size);
+	vars.avg = stack_pivot(a, size);
 	while (vars.cnt++ < size)
 	{
-		if ((*(int*)a->begin->content <= vars.avg) && ((vars.splits[1]++) || 1))
+		if ((LTOI(a->begin) <= vars.avg) && ((vars.splits[1]++) || 1))
 			perform("pb", a, b, opt);
 		else if ((vars.splits[0]++) || 1)
 		{
@@ -93,5 +110,8 @@ void			sort_stack(t_stack *a, t_stack *b, t_opts *opt)
 	size = stack_size(a);
 	if (size == 1)
 		return ;
-	lower(a, b, size, opt);
+	else if (size == 3)
+		fast_sort(a, b, A, opt);
+	else
+		lower(a, b, size, opt);
 }

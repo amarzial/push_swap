@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:57:09 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/29 20:08:19 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:20:31 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,10 @@ void	stack_swap(t_stack *stack)
 	}
 }
 
-int		stack_is_ordered(t_stack *stack)
+void	stack_clear(t_stack *stack)
 {
-	int		head;
-	int		min;
-	t_list	*cur;
-
-	if (stack_size(stack) <= 2)
-		return (1);
-	cur = stack->begin;
-	head = 0;
-	min = *(int*)cur->content;
-	while (cur != stack->end && head < 2)
-	{
-		if (*(int*)cur->content >= *(int*)cur->next->content)
-			head++;
-		if (head && *(int*)cur->content > min)
-			return (0);
-		cur = cur->next;
-	}
-	if (head == 1)
-		return (1);
-	return (0);
+	if (!stack->begin)
+		return ;
+	while (stack->begin)
+		free(stack_pop(stack));
 }

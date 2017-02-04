@@ -1,9 +1,11 @@
 SHARED_SRCS = handler.c \
 			  mystack.c \
 			  mystack_ops.c \
+			  mystack_extra.c \
 			  utils.c \
 			  bonus.c \
 			  algorithm.c \
+			  fast_sort.c \
 			  common.c
 
 CHECKER_SRCS = checker.c

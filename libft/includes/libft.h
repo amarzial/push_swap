@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 11:59:55 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/31 15:50:08 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:23:14 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdlib.h>
 # define GET_LINE_BUFF_SIZE 32
 # include "libft.h"
-# define FT_COL(x) "\e[" x "m"
+# define FT_COL(x) "\x1B[" x "m"
 
 typedef struct			s_reader
 {

@@ -6,10 +6,16 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/01/28 00:05:10 by amarzial         ###   ########.fr       */
+=======
+/*   Updated: 2017/02/04 03:02:25 by amarzial         ###   ########.fr       */
+>>>>>>> b15e583a2397d458e324c44126da459f90408b01
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "limits.h"
+#include "stdint.h"
 #include "mystack.h"
 #include "push_swap.h"
 #include "libft.h"
@@ -45,21 +51,6 @@ void	error_exit(t_stack *stack)
 	stack_clear(stack + 1);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
-}
-
-void	stack_limits(t_stack *stack, int *lims)
-{
-	t_list	*cur;
-
-	cur = stack->begin;
-	lims[0] = *(int*)cur->content;
-	lims[1] = *(int*)cur->content;
-	while (cur)
-	{
-		lims[0] = ft_min(lims[0], *(int*)cur->content);
-		lims[1] = ft_max(lims[1], *(int*)cur->content);
-		cur = cur->next;
-	}
 }
 
 int		perform(char *op, t_stack *a, t_stack *b, t_opts *opt)
