@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/15 15:48:26 by amarzial          #+#    #+#             */
-/*   Updated: 2017/01/25 19:29:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:47:50 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int			main(int argc, const char *argv[])
 	if (stack_size(stack) > 1)
 		sort_stack(stack, stack + 1, &opt);
 	empty_stack(stack);
+	i = opt.size + 1;
+	while (i < argc)
+		putarg(argv[i++], stack);
+	opt.flush = 1;
+	perform(0, stack, stack + 1, &opt);
 	empty_stack(stack + 1);
 	return (0);
 }
