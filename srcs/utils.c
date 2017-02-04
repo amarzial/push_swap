@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 15:57:25 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:29:04 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "mystack.h"
 #include "push_swap.h"
 #include "libft.h"
+#include <stdint.h>
+#include <limits.h>
 
 int			validarg(const char *arg, t_stack *stack)
 {

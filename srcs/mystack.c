@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 18:57:09 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 00:54:43 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:20:31 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	stack_swap(t_stack *stack)
 		stack->begin = stack->begin->next;
 		tmp->next = stack->begin->next;
 		stack->begin->next = tmp;
+		if (stack->end == stack->begin)
+			stack->end = tmp;
 	}
 }
 
