@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 19:36:11 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 19:29:04 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:41:47 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*next_cmd(t_stack *cmds)
 		free(stack_pop(cmds));
 		return (0);
 	}
-	return(op);
+	return (op);
 }
 
 int			perform(char *op, t_stack *a, t_stack *b, t_opts *opt)

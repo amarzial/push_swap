@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 12:38:39 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 02:27:21 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:41:36 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ size_t			max_index(t_stack *s, size_t size)
 	}
 	return (i_max);
 }
-
 
 static int		stack_median(t_stack *stack, size_t size)
 {

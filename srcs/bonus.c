@@ -6,7 +6,7 @@
 /*   By: amarzial <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:21:59 by amarzial          #+#    #+#             */
-/*   Updated: 2017/02/04 16:35:20 by amarzial         ###   ########.fr       */
+/*   Updated: 2017/02/04 19:42:19 by amarzial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	get_color(char *op)
 void		print_special(char *op, t_stack *a, t_stack *b, t_opts *opt)
 {
 	char *col;
+
 	if (opt->color)
 	{
 		col = ft_itoa(get_color(op));
